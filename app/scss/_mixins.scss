@@ -1,0 +1,36 @@
+// breakpoints
+@media (min-width: 64em) {
+  // 1024 / 16 = 64em
+  // style goes here
+}
+
+// Here is the map for up and down
+$breakpoints-up: (
+  "medium": "40em",
+  // 640px / 16 = 40em
+  "large": "64em",
+  // 1024px / 16 = 64em
+  "xlarge": "87.5em" // 1400px / 16 = 87.5em,,
+);
+
+// 639px, 1023px, 1399px -> to avoid overlapping
+$breakpoints-down: (
+  "small": "39.9375em",
+  // 639px / 16 = 40em
+  "medium": "63.9375em",
+  // 1023px / 16 = 64em
+  "large": "87.4375em" // 1399px / 16 = 87.5em,,
+);
+
+// Create mixin for breakpoint-up
+@mixin breakpoint-up($size) {
+  @media (min-width: map-get($breakpoints-up , $size)) {
+    @content;
+  }
+}
+// Create mixin for breakpoint-down
+@mixin breakpoint-down($size) {
+  @media (max-width: map-get($breakpoints-down , $size)) {
+    @content;
+  }
+}
